@@ -19,3 +19,10 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
+Cypress.Commands.add('login', (username, password) => {
+  cy.visit('/login')
+  cy.url().should('include', '/login')
+  cy.get('[formcontrolname=email]').type(username)
+  cy.get('[formcontrolname=password]').type(password)
+  cy.get('.btn').click()
+})
